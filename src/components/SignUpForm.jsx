@@ -3,12 +3,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupStart, signupSuceess, signupFailure } from '../app/user/userSlice';
-import { useHistory } from 'react-router-dom';
+
 export default function SignUpForm() {
     const [password, setPassword] = useState('')
     const [userName, setUserName] = useState('')
     const [name, setName] = useState('')
-    const history = useHistory();
+   
     const users = useSelector(state => state.user) || [];
     console.log(users.allUser)
     const dispatch = useDispatch()
@@ -22,7 +22,7 @@ export default function SignUpForm() {
                 dispatch(signupFailure('User already exists'))
             } else {
                 dispatch(signupSuceess({ name, userName, password }))
-                history.push('/sign-in')
+               
             }
         } catch (error) {
             console.log(error)
