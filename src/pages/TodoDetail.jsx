@@ -20,8 +20,6 @@ export default function TodoDetail() {
 
     return (
         <div className='container mx-auto mt-10'>
-
-
             <Card sx={{ minWidth: 275, maxWidth: 350 }}>
                 <CardContent>
                     <Typography variant="h4" component="div">
