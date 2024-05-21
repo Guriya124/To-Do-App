@@ -21,9 +21,13 @@ export default function ToDoList() {
                             : item.description;
 
                         return (
-                            <ListCard key={index}
+                            <ListCard
+                                key={index}
                                 title={item.title}
                                 description={shortDescription}
+                                onReadMore={() => handleReadMore(item.userName)}
+                                onUpdate={() => handleUpdate(item.userName)}
+                                onDelete={() => handleDelete(item.userName)}
                             />
                         )
                     })}

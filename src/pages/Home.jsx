@@ -9,6 +9,7 @@ import { useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { todoFailure, todoStart, todoSuceess } from '../app/todo/todoSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
 
@@ -18,11 +19,14 @@ export default function Home() {
     const [description, setDescription] = useState('');
     const userId = currentuser.userName
     const dispatch = useDispatch()
+
+
     function handleSubmit(e) {
         e.preventDefault();
         try {
             dispatch(todoStart())
-            dispatch(todoSuceess({ title, description, userId }))
+            const id = uuidv4(); // Generate a unique id
+            dispatch(todoSuceess({ id, title, description, userId }))
             handleClose()
             setTitle("")
             setDescription("")
