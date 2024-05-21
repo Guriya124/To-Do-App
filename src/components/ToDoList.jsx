@@ -1,14 +1,23 @@
 // TO-Do list
 import { useSelector } from "react-redux"
+import { useDispatch } from 'react-redux';
+import {todoDelete} from '../app/todo/todoSlice'
 
 import ListCard from "./Listcard"
 import Header from "./Header"
 export default function ToDoList() {
+    const dispatch = useDispatch();
     const todo = useSelector(state => state.todo.todo)
     const currentUser = useSelector(state => state.user.currentUser)
     let matchingTodos = []
     if (currentUser) {
         matchingTodos = todo.filter(item => item.userId === currentUser.userName);
+    }
+
+    function handleDelete(id) {
+        dispatch(todoDelete(id))
+
+        
     }
     return (
         <>
@@ -25,9 +34,9 @@ export default function ToDoList() {
                                 key={index}
                                 title={item.title}
                                 description={shortDescription}
-                                onReadMore={() => handleReadMore(item.userName)}
-                                onUpdate={() => handleUpdate(item.userName)}
-                                onDelete={() => handleDelete(item.userName)}
+                                onReadMore={() => handleReadMore(item.id)}
+                                onUpdate={() => handleUpdate(item.id)}
+                                onDelete={() => handleDelete(item.id)}
                             />
                         )
                     })}

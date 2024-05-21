@@ -19,6 +19,9 @@ export const todoSlice = createSlice({
             state.todo.push(action.payload)
             state.error = null
         },
+        todoDelete: (state, action) => {
+            state.todo = state.todo.filter((todo) => todo.id !== action.payload);
+        },
         todoFailure: (state, action) => {
             state.loading = false
             state.error = action.payload
@@ -27,6 +30,6 @@ export const todoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { todoStart, todoSuceess, todoFailure } = todoSlice.actions
+export const { todoStart, todoSuceess,todoDelete, todoFailure } = todoSlice.actions
 
 export default todoSlice.reducer
