@@ -1,11 +1,15 @@
 // TO-Do list
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux';
-import {todoDelete} from '../app/todo/todoSlice'
-
+import { todoDelete } from '../app/todo/todoSlice'
 import ListCard from "./Listcard"
 import Header from "./Header"
+
+
+
 export default function ToDoList() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const todo = useSelector(state => state.todo.todo)
     const currentUser = useSelector(state => state.user.currentUser)
@@ -15,9 +19,11 @@ export default function ToDoList() {
     }
 
     function handleDelete(id) {
-        dispatch(todoDelete(id))
+        dispatch(todoDelete(id))  
+    }
 
-        
+    function handleReadMore(id) {
+        navigate(`/tododetail/${id}`);
     }
     return (
         <>
