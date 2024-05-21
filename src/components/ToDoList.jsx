@@ -16,11 +16,14 @@ export default function ToDoList() {
                 <Header />
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     {matchingTodos.map((item, index) => {
+                        let shortDescription = item.description.length > 70
+                            ? item.description.substring(0, 70) + "..."
+                            : item.description;
+
                         return (
                             <ListCard key={index}
                                 title={item.title}
-                                description={item.description}
-
+                                description={shortDescription}
                             />
                         )
                     })}
